@@ -1,8 +1,8 @@
 {
-    "name": "icobot",
+    "name": "ihavenever-bot",
     "type": "module",
     "version": "1.0.0",
-    "description": "Telegram bot for getting SVG icons from FontAwesome",
+    "description": "Funny Telegram bot for getting questions for game \"I have never...\"",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,14 +11,14 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/Ev1ch/icobot.git"
+        "url": "git+https://github.com/Ev1ch/ihavenever-bot.git"
     },
     "author": "",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/Ev1ch/icobot/issues"
+        "url": "https://github.com/Ev1ch/ihavenever-bot/issues"
     },
-    "homepage": "https://github.com/Ev1ch/icobot#readme",
+    "homepage": "https://github.com/Ev1ch/ihavenever-bot#readme",
     "dependencies": {
         "pg": "^8.7.1",
         "sequelize": "^6.6.5",

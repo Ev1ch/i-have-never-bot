@@ -1,3 +1,3 @@
-# I have never bot
+# ihavenever-bot
 
-Funny Telegram bot for getting questions for game "I haver never..."
+Funny Telegram bot for getting questions for game "I have never..."
