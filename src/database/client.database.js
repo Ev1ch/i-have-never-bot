@@ -5,7 +5,9 @@ const { Client } = pg;
 
 class DatabaseClient {
     constructor() {
-        this.client = new Client(DATABASE_CONFIG);
+        this.client = new Client({
+            connectionString: DATABASE_CONFIG.connectionString,
+        });
     }
 
     async connect() {

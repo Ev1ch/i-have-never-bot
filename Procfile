@@ -1,1 +1,1 @@
-web: npm build; npm start;
+web: npm migrate; npm start
