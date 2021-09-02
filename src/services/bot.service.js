@@ -8,15 +8,17 @@ class BotService {
         this.questionsService = new QuestionsService();
     }
 
-    sendMessage(ctx, message, withKeyboard = false) {
+    sendMessage(ctx, message, withKeyboard) {
         const escapedMessage = escapeMessage(message);
         ctx.replyWithMarkdownV2(
             escapedMessage,
-            withKeyboard
+            withKeyboard === true
                 ? {
                       reply_markup: { keyboard: BOT_KEYBOARD },
                   }
-                : { reply_markup: { remove_keyboard: true } },
+                : withKeyboard === false
+                ? { reply_markup: { remove_keyboard: true } }
+                : null,
         );
     }
 
@@ -28,8 +30,21 @@ class BotService {
         this.sendMessage(ctx, BotReplies.HELP);
     }
 
+    async reset(ctx) {
+        const userId = ctx.update.message.from.id;
+        const userStat = await this.usersService.getStat(userId);
+
+        if (!userStat) {
+            return this.sendMessage(ctx, BotReplies.NOTHING_TO_RESET);
+        }
+
+        await this.usersService.resetStat(userId);
+
+        this.sendMessage(ctx, BotReplies.RESET);
+    }
+
     stop(ctx) {
-        this.sendMessage(ctx, BotReplies.STOP);
+        this.sendMessage(ctx, BotReplies.STOP, false);
     }
 
     async question(ctx, categoryId) {

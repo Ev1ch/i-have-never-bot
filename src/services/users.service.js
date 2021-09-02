@@ -37,6 +37,13 @@ class UsersService {
 
         return updatedStat;
     }
+
+    async resetStat(userId) {
+        this.updateStat(userId, {
+            answered_questions: [],
+            answered_adult_questions: [],
+        });
+    }
 }
 
 export default UsersService;
