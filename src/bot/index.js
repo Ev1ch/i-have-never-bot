@@ -12,6 +12,8 @@ bot.startWebhook('/', null, PORT);
 
 bot.help(botService.help.bind(botService));
 
+bot.hears(BotCommands.STOP, botService.stop.bind(botService));
+
 bot.hears(BotCommands.QUESTION, (ctx) =>
     botService.question.bind(botService)(ctx, QuestionCategories.SIMPLE),
 );
