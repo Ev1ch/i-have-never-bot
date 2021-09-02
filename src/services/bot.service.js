@@ -16,7 +16,7 @@ class BotService {
                 ? {
                       reply_markup: { keyboard: BOT_KEYBOARD },
                   }
-                : null,
+                : { reply_markup: { remove_keyboard: true } },
         );
     }
 
