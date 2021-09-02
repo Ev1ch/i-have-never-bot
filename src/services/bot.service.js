@@ -21,7 +21,7 @@ class BotService {
     }
 
     start(ctx) {
-        this.sendMessage(ctx, BotReplies.START);
+        this.sendMessage(ctx, BotReplies.START, true);
     }
 
     help(ctx) {
