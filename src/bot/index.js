@@ -24,4 +24,6 @@ bot.hears(BotCommands.ADULT_QUESTION, (ctx) =>
     botService.question.bind(botService)(ctx, QuestionCategories.ADULT),
 );
 
+bot.hears(BotCommands.UNKNOWRN, botService.question.bind(botService));
+
 export default bot;
