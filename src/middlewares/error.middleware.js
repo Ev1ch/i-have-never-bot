@@ -2,7 +2,8 @@ import { BotReplies } from '../commons/index.js';
 import { sendMessage } from '../helpers/index.js';
 
 async function errorMiddleware(error, ctx) {
-    console.error(error);
+    const errorLog = `Error: ${error}`;
+    console.error(errorLog);
     sendMessage(ctx, BotReplies.ERROR);
 }
 
