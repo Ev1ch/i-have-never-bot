@@ -14,10 +14,7 @@ class BotService {
             escapedMessage,
             withKeyboard === true
                 ? {
-                      reply_markup: {
-                          keyboard: BOT_KEYBOARD,
-                          resize_keyboard: true,
-                      },
+                      reply_markup: BOT_KEYBOARD,
                   }
                 : withKeyboard === false
                 ? { reply_markup: { remove_keyboard: true } }
