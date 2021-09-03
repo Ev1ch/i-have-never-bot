@@ -7,22 +7,20 @@ class BaseRepository {
     }
 
     async getById(id) {
-        const model = await this.database.findOne({ id });
-        return model;
+        const foundModel = await this.database.findOne({ id });
+        return foundModel;
     }
 
     async getWithOffset(offset, condition) {
-        const model = await this.database.getOneWithOffset(offset, condition);
-        return model;
+        const foundModel = await this.database.getOneWithOffset(
+            offset,
+            condition,
+        );
+        return foundModel;
     }
 
     async updateById(id, updates) {
-        const updatedModel = await this.database.updateOne(
-            {
-                id,
-            },
-            updates,
-        );
+        const updatedModel = await this.database.updateOne({ id }, updates);
         return updatedModel;
     }
 
