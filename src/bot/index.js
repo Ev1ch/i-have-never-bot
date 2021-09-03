@@ -1,6 +1,6 @@
 import { Telegraf } from 'telegraf';
 import { BotCommands, QuestionCategories } from '../commons/index.js';
-import { BOT_TOKEN, PORT } from '../configs/index.js';
+import { BOT_TOKEN } from '../configs/index.js';
 import { logMiddleware, errorMiddleware } from '../middlewares/index.js';
 import { BotService } from '../services/index.js';
 
@@ -12,8 +12,6 @@ bot.use(logMiddleware);
 bot.catch(errorMiddleware);
 
 bot.start(botService.start.bind(botService));
-
-bot.startWebhook('/', null, PORT);
 
 bot.help(botService.help.bind(botService));
 
