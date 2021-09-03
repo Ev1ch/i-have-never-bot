@@ -1,5 +1,4 @@
-const { config } = require('dotenv');
-config();
+require('dotenv').config({ path: '../../.env' });
 
 const SEQUALIZE_CONFIG = {
     production: {
@@ -16,3 +15,5 @@ const SEQUALIZE_CONFIG = {
         },
     },
 };
+
+module.exports = SEQUALIZE_CONFIG;
