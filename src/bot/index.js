@@ -7,6 +7,8 @@ import { BotService } from '../services/index.js';
 const bot = new Telegraf(BOT_TOKEN);
 const botService = new BotService();
 
+bot.use(logMiddleware);
+
 bot.start(botService.start.bind(botService));
 
 bot.startWebhook('/', null, PORT);
@@ -26,7 +28,5 @@ bot.hears(BotCommands.ADULT_QUESTION, (ctx) =>
 );
 
 bot.on(BotCommands.UNKNOWN, botService.unknown.bind(botService));
-
-bot.use(logMiddleware);
 
 export default bot;
