@@ -1,5 +1,5 @@
-import { escapeMessage } from '../helpers/index.js';
-import { BotReplies, BOT_KEYBOARD, REMOVE_KEYBOARD } from '../commons/index.js';
+import { BotReplies } from '../commons/index.js';
+import { sendMessage } from '../helpers/index.js';
 import { UsersService, QuestionsService } from './index.js';
 
 class BotService {
@@ -8,24 +8,12 @@ class BotService {
         this.questionsService = new QuestionsService();
     }
 
-    sendMessage(ctx, message, withKeyboard) {
-        const escapedMessage = escapeMessage(message);
-        ctx.replyWithMarkdownV2(
-            escapedMessage,
-            withKeyboard === true
-                ? { reply_markup: BOT_KEYBOARD }
-                : withKeyboard === false
-                ? { reply_markup: REMOVE_KEYBOARD }
-                : null,
-        );
-    }
-
     start(ctx) {
-        this.sendMessage(ctx, BotReplies.START, true);
+        sendMessage(ctx, BotReplies.START, true);
     }
 
     help(ctx) {
-        this.sendMessage(ctx, BotReplies.HELP);
+        sendMessage(ctx, BotReplies.HELP);
     }
 
     async reset(ctx) {
@@ -33,20 +21,20 @@ class BotService {
         const userStat = await this.usersService.getStatByUserId(userId);
 
         if (!userStat) {
-            return this.sendMessage(ctx, BotReplies.NOTHING_TO_RESET);
+            return sendMessage(ctx, BotReplies.NOTHING_TO_RESET);
         }
 
         await this.usersService.resetStatByUserId(userId);
 
-        this.sendMessage(ctx, BotReplies.RESET);
+        sendMessage(ctx, BotReplies.RESET);
     }
 
     stop(ctx) {
-        this.sendMessage(ctx, BotReplies.STOP, false);
+        sendMessage(ctx, BotReplies.STOP, false);
     }
 
     unknown(ctx) {
-        this.sendMessage(ctx, BotReplies.UNKNOWN);
+        sendMessage(ctx, BotReplies.UNKNOWN);
     }
 
     async question(ctx, categoryId) {
@@ -60,7 +48,7 @@ class BotService {
         );
 
         if (!questionsNumber) {
-            return this.sendMessage(ctx, BotReplies.NO_QUESTIONS, true);
+            return sendMessage(ctx, BotReplies.NO_QUESTIONS, true);
         }
 
         if (userStat.answered_adult_questions.length >= questionsNumber) {
@@ -68,7 +56,7 @@ class BotService {
                 answered_adult_questions: [],
             });
 
-            this.sendMessage(ctx, BotReplies.CATEGORY_FINISHED, true);
+            sendMessage(ctx, BotReplies.CATEGORY_FINISHED, true);
         }
 
         let question;
@@ -85,7 +73,7 @@ class BotService {
             ],
         });
 
-        this.sendMessage(ctx, question.text, true);
+        sendMessage(ctx, question.text, true);
     }
 }
 
