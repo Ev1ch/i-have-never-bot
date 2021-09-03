@@ -1,6 +1,7 @@
 import { Telegraf } from 'telegraf';
 import { BotCommands, QuestionCategories } from '../commons/index.js';
 import { BOT_TOKEN, PORT } from '../configs/index.js';
+import { logMiddleware } from '../middlewares/index.js';
 import { BotService } from '../services/index.js';
 
 const bot = new Telegraf(BOT_TOKEN);
@@ -25,5 +26,7 @@ bot.hears(BotCommands.ADULT_QUESTION, (ctx) =>
 );
 
 bot.on(BotCommands.UNKNOWN, botService.unknown.bind(botService));
+
+bot.use(logMiddleware);
 
 export default bot;
