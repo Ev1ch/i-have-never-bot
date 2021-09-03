@@ -3,8 +3,6 @@ const BOT_KEYBOARD = [
         {
             text: 'Питання',
         },
-    ],
-    [
         {
             text: 'Питання 18+',
         },
