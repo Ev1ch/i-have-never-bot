@@ -1,5 +1,5 @@
 import { escapeMessage } from '../helpers/index.js';
-import { BotReplies, BOT_KEYBOARD } from '../commons/index.js';
+import { BotReplies, BOT_KEYBOARD, REMOVE_KEYBOARD } from '../commons/index.js';
 import { UsersService, QuestionsService } from './index.js';
 
 class BotService {
@@ -13,11 +13,9 @@ class BotService {
         ctx.replyWithMarkdownV2(
             escapedMessage,
             withKeyboard === true
-                ? {
-                      reply_markup: BOT_KEYBOARD,
-                  }
+                ? { reply_markup: BOT_KEYBOARD }
                 : withKeyboard === false
-                ? { reply_markup: { remove_keyboard: true } }
+                ? { reply_markup: REMOVE_KEYBOARD }
                 : null,
         );
     }
