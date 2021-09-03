@@ -50,6 +50,10 @@ class BotService {
         this.sendMessage(ctx, BotReplies.STOP, false);
     }
 
+    unknown(ctx) {
+        this.sendMessage(ctx, BotReplies.UNKNOWN);
+    }
+
     async question(ctx, categoryId) {
         const userId = ctx.update.message.from.id;
         let userStat =
