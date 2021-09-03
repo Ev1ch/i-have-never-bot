@@ -1,4 +1,4 @@
-function logMiddleware(ctx, next) {
+async function logMiddleware(ctx, next) {
     const message = ctx.update.message;
     const user = message.from;
     const logMessage = `User: ${user.id}, ${user.username} => ${
@@ -6,6 +6,8 @@ function logMiddleware(ctx, next) {
     } | ${new Date(message.date).toUTCString()}`;
 
     console.log(logMessage);
+
+    await next();
 }
 
 export default logMiddleware;
