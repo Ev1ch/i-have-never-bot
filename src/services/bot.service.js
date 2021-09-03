@@ -30,13 +30,13 @@ class BotService {
 
     async reset(ctx) {
         const userId = ctx.update.message.from.id;
-        const userStat = await this.usersService.getStat(userId);
+        const userStat = await this.usersService.getStatByUserId(userId);
 
         if (!userStat) {
             return this.sendMessage(ctx, BotReplies.NOTHING_TO_RESET);
         }
 
-        await this.usersService.resetStat(userId);
+        await this.usersService.resetStatByUserId(userId);
 
         this.sendMessage(ctx, BotReplies.RESET);
     }
@@ -52,8 +52,8 @@ class BotService {
     async question(ctx, categoryId) {
         const userId = ctx.update.message.from.id;
         let userStat =
-            (await this.usersService.getStat(userId)) ||
-            (await this.usersService.create(userId)).stat;
+            (await this.usersService.getStatByUserId(userId)) ||
+            (await this.usersService.createUser(userId)).stat;
 
         const questionsNumber = await this.questionsService.getSizeOf(
             categoryId,
@@ -64,7 +64,7 @@ class BotService {
         }
 
         if (userStat.answered_adult_questions.length >= questionsNumber) {
-            userStat = await this.usersService.updateStat(userId, {
+            userStat = await this.usersService.updateStatByUserId(userId, {
                 answered_adult_questions: [],
             });
 
@@ -78,7 +78,7 @@ class BotService {
             );
         } while (userStat.answered_adult_questions.includes(question.id));
 
-        await this.usersService.updateStat(userId, {
+        await this.usersService.updateStatByUserId(userId, {
             answered_adult_questions: [
                 ...userStat.answered_adult_questions,
                 question.id,

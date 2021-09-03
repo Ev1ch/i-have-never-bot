@@ -6,7 +6,7 @@ class UsersService {
         this.usersStatRepository = new UsersStatRepository();
     }
 
-    async create(id) {
+    async createUser(id) {
         const createdStat = await this.usersStatRepository.add();
         const createdUser = await this.usersRepository.add({
             id,
@@ -16,7 +16,7 @@ class UsersService {
         return { ...createdUser, stat: createdStat };
     }
 
-    async getStat(userId) {
+    async getStatByUserId(userId) {
         const user = await this.usersRepository.getById(userId);
 
         if (!user) {
@@ -28,7 +28,7 @@ class UsersService {
         return stat;
     }
 
-    async updateStat(userId, stat) {
+    async updateStatByUserId(userId, stat) {
         const user = await this.usersRepository.getById(userId);
         const updatedStat = await this.usersStatRepository.updateById(
             user.stat_id,
@@ -38,7 +38,7 @@ class UsersService {
         return updatedStat;
     }
 
-    async resetStat(userId) {
+    async resetStatByUserId(userId) {
         this.updateStat(userId, {
             answered_questions: [],
             answered_adult_questions: [],
