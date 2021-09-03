@@ -3,7 +3,7 @@ const BotComands = {
     STOP: '/stop',
     QUESTION: 'Питання',
     ADULT_QUESTION: 'Питання 18+',
-    UNKNOWN: '*',
+    UNKNOWN: 'text',
 };
 
 export default BotComands;
