@@ -1,9 +1,11 @@
 function mapObjectToValues(object) {
-    return Object.values(object).map((value) =>
+    const mappedObject = Object.values(object).map((value) =>
         Array.isArray(value)
             ? `{ ${value.map((item) => `"${item}"`).toString()} }`
             : value,
     );
+
+    return mappedObject;
 }
 
 export default mapObjectToValues;
