@@ -1,4 +1,4 @@
-const BOT_KEYBOARD = {
+const QUESTIONS_KEYBOARD = {
     keyboard: [
         [
             {
@@ -12,4 +12,4 @@ const BOT_KEYBOARD = {
     resize_keyboard: true,
 };
 
-export default BOT_KEYBOARD;
+export default QUESTIONS_KEYBOARD;
