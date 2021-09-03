@@ -107,14 +107,16 @@ class DatabaseClient {
 
         const {
             rows: [{ size }],
-        } = await this.client.query(
-            `SELECT COUNT(*) as size FROM ${this.table} ${
-                condition ? `WHERE ${mapObjectToQuery(condition)}` : ''
-            }`,
-            condition ? mapObjectToValues(condition) : undefined,
+        } = Number(
+            await this.client.query(
+                `SELECT COUNT(*) as size FROM ${this.table} ${
+                    condition ? `WHERE ${mapObjectToQuery(condition)}` : ''
+                }`,
+                condition ? mapObjectToValues(condition) : undefined,
+            ),
         );
 
-        return +size;
+        return size;
     }
 }
 
