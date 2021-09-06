@@ -1,5 +1,3 @@
-require('dotenv').config({ path: '../../.env' });
-
 const SEQUALIZE_CONFIG = {
     production: {
         username: process.env.DB_USER,
