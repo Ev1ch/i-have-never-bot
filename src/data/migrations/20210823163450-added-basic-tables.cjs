@@ -44,10 +44,6 @@ module.exports = {
                 primaryKey: true,
                 autoIncrement: true,
             },
-            answered_adult_questions: {
-                type: Sequelize.ARRAY(Sequelize.INTEGER),
-                defaultValue: [],
-            },
             answered_questions: {
                 type: Sequelize.ARRAY(Sequelize.INTEGER),
                 defaultValue: [],
