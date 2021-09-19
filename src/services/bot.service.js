@@ -51,9 +51,9 @@ class BotService {
             return sendMessage(ctx, BotReplies.NO_QUESTIONS, true);
         }
 
-        if (userStat.answered_adult_questions.length >= questionsNumber) {
+        if (userStat.answered_questions.length >= questionsNumber) {
             userStat = await this.usersService.updateStatByUserId(userId, {
-                answered_adult_questions: [],
+                answered_questions: [],
             });
 
             sendMessage(ctx, BotReplies.CATEGORY_FINISHED, true);
@@ -64,13 +64,10 @@ class BotService {
             question = await this.questionsService.getRandomQuestionOf(
                 categoryId,
             );
-        } while (userStat.answered_adult_questions.includes(question.id));
+        } while (userStat.answered_questions.includes(question.id));
 
         await this.usersService.updateStatByUserId(userId, {
-            answered_adult_questions: [
-                ...userStat.answered_adult_questions,
-                question.id,
-            ],
+            answered_questions: [...userStat.answered_questions, question.id],
         });
 
         sendMessage(ctx, question.text, true);

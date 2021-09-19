@@ -41,7 +41,6 @@ class UsersService {
     async resetStatByUserId(userId) {
         this.updateStatByUserId(userId, {
             answered_questions: [],
-            answered_adult_questions: [],
         });
     }
 }
