@@ -1,7 +1,7 @@
 module.exports = {
     up: async (queryInterface, Sequelize) => {
         await queryInterface.bulkInsert(
-            'question_categories',
+            'questions_categories',
             [
                 {
                     name: 'Simple questions',
@@ -16,7 +16,7 @@ module.exports = {
 
     down: async (queryInterface, Sequelize) => {
         await queryInterface.bulkDelete(
-            'question_categories',
+            'questions_categories',
             { id: { [Sequelize.Op.lte]: 2 } },
             {},
         );

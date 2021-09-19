@@ -1,6 +1,6 @@
 module.exports = {
     up: async (queryInterface, Sequelize) => {
-        await queryInterface.createTable('question_categories', {
+        await queryInterface.createTable('questions_categories', {
             id: {
                 type: Sequelize.INTEGER,
                 primaryKey: true,
@@ -28,7 +28,7 @@ module.exports = {
             category_id: {
                 type: Sequelize.INTEGER,
                 references: {
-                    model: 'question_categories',
+                    model: 'questions_categories',
                     key: 'id',
                 },
                 allowNull: false,
